@@ -1,0 +1,13 @@
+#  忽略所有 .tmp 结尾的文件
+*.tmp
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+#IDEA
+.idea/
+
+### Java-Web ###
+## ignoring target file
+target/

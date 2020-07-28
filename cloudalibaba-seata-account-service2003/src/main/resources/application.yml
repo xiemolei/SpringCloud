@@ -1,0 +1,49 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    alibaba:
+      seata:
+        #自定义事务组名称需要与seata-server中的对应
+        enabled: true
+        application-id: seata-account-service
+        tx-service-group: my_test_tx_group
+        enable-auto-data-source-proxy: true
+        config:
+          type: nacos
+          nacos:
+            namespace:
+            serverAddr: 192.168.1.126
+            group: SEATA_GROUP
+            userName: "nacos"
+            password: "nacos"
+        registry:
+          type: nacos
+          nacos:
+            #与seata server的registry.conf的nacos名字相同
+            application: seata-server
+            server-addr: 192.168.1.126
+            namespace:
+            userName: "nacos"
+            password: "nacos"
+    nacos:
+      discovery:
+        server-addr: 192.168.1.126:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.126:3306/seata_account
+    username: root
+    password: 123456
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+
